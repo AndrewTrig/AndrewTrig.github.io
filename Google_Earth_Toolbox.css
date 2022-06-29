@@ -1,0 +1,127 @@
+/*
+   -----------------------------------------------------------------------------
+   Page Header
+   -----------------------------------------------------------------------------
+*/
+
+html, body {
+    margin: 0;
+    padding: 0;
+}  
+
+#table-resize {
+    height:10vh;
+    text-align:center;
+    border: #111;
+}
+
+#header-title {
+    color: whitesmoke;
+    font-size: 5vh;
+    padding-left: 20px;
+}
+
+#Side-bar-btn {
+    color: whitesmoke;
+    font-size: 5vh;
+    padding-left: 20px;
+}
+header {
+    z-index: 1;
+    padding: 1vh 16px;
+    background: #1ba88c;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    height: 10%;
+}
+
+/*
+   -----------------------------------------------------------------------------
+   Navigation
+   -----------------------------------------------------------------------------
+*/
+
+.sidebar {
+    height: calc(100vh - 12vh - 75px);
+    height: -webkit-calc(100vh - 12vh - 75px);
+    height: -moz-calc(100vh - 12vh - 75px);
+
+    width: 0;
+    position: fixed;
+    z-index: 2;
+    background-color: #111;
+    overflow-x: hidden;
+    transition: 0.5s;
+    padding-top: 75px;
+    left: 0;
+    bottom: 0;
+}
+
+.sidebar a {
+    padding: 20px 25px;
+    font-size: 25px;
+    text-decoration: none;
+    color: #818181;
+    display: block;
+    transition: 0.2s;
+}
+
+.sidebar a:hover {
+    color: #f1f1f1;
+}
+
+.sidebar .closebtn {
+    font-family: "Lato", sans-serif;
+    position: absolute;
+    top: 0;
+    right: 25px;
+    font-size: 36px;
+    margin-left: 50px;
+}
+
+.Side-bar-btn {
+    font-size: 40px;
+    cursor: pointer;
+    color: white;
+}
+
+/*
+   -----------------------------------------------------------------------------
+   Main Text
+   -----------------------------------------------------------------------------
+*/
+
+h1 {
+    font-size: 42px
+}
+
+
+#main {
+    transition: margin-left .5s;
+}
+
+.general {
+    padding: 20px;
+}
+
+p {
+    padding-left: 30px;
+    font-size: 18px;
+}
+
+.bluebox {
+    border: 2px solid rgb(6, 192, 216);
+    background-color: powderblue;
+    padding: 30px;
+    margin: 50px;
+}
+
+.contact {
+    font-size: 24px;
+    color: black;
+    text-decoration: none;
+    font-style: italic;
+    margin: 30px;
+    padding: 10px;
+}

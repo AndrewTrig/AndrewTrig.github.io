@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <link rel="icon" type="image/x-icon" href="photos/Final_Test_Icon.ico"> <!-- TO BE FINISHED -->
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>The Google Earth Toolbox</title>
+        <link rel="stylesheet" href="Google_Earth_Toolbox.css">
+    </head>
+    <script src="Google_Earth_Toolbox.js"></script>
+    <script src="Additional/dist/jszip.js"></script>
+    <script src="Additional_2/dist/FileSaver.js"></script>
+    <body>
+        <header>
+            <table id="table-resize">
+                <tr><td>
+                    <a id="Side-bar-btn" onclick="Nav()">&equiv;</a>
+                    <a id="header-title">The Google Earth Toolbox</a>
+                </td></tr>
+            </table>
+        </header>
+
+
+
+        <!-- 
+        -----------------------------------------------------------------------------
+            Navigation Menu
+        -----------------------------------------------------------------------------
+        -->
+        <div id="mySidebar" class="sidebar" style="margin-left: -10px;">
+            <a href="javascript:void(0)" class="closebtn" onclick="Nav()">x</a>
+            <a onclick="txt('homepage')">Homepage</a>
+            <a onclick="txt('PathAndPolygon')">Path to Polygon Convertor</a>
+            <a onclick="txt('CoordinateConversion')">Coordinate Convertor</a>
+            <a onclick="txt('SingleToMultiple')">File to Multiple Shapes & Paths</a>
+            <!--<a onclick="txt('CombinePath')">Multiple paths to Polygon</a>-->
+            <a onclick="txt('Help')">Help</a>
+            <a onclick="txt('Contact')">Contact Us</a>
+        </div>
+
+        <div id="main">
+            <div style="height: 10vh"></div>
+            <!-- 
+                -----------------------------------------------------------------------------
+                    Toolbox Homepage
+                -----------------------------------------------------------------------------
+            -->
+            <div id="homepage" class="general">   
+                <h1>Homepage</h1> 
+                <p>Welcome to the homepage of "The Google Earth Toolbox", a helpful Google Earth addition that will help Google Earth users to do some additional features that are not implemented in Google Earth.</p>
+                <p>This website is a work in project and this is just it's first release with the following functions:</p>
+                <p style="padding-left: 80px"><b>Current Working Features:</b></p>
+                <ul style="padding-left: 140px">
+                    <li>Path to Polygon & Polygon to Path</li>
+                    <li>Conversion of kml file to multiple types of coordinate points</li>
+                    <li>Single kml file containing all kml shapes and polygons to multiple singular files</li>
+                </ul>
+                <p style="padding-left: 80px"><b>To be implemented Features:</b></p>
+                <ul style="padding-left: 140px">
+                    <li>Combine Multiple Paths</li>
+                    <li>.csv file to kml shape and polygon file</li>
+                    <li>Multiple .kml files to csv coordinates</li>
+                </ul>
+                <p>The following list of to be implemented features may not be added for a while as this is a free service from a poor university student. If you need any advice or development work done, I am available for consultancy (Contact information is contact tab).</p> 
+                <p>If you have any queries or helpful suggestions, please find my contact details in the sidebar.</p>   
+            </div>
+
+            <!-- 
+                -----------------------------------------------------------------------------
+                    Path to Polygon
+                -----------------------------------------------------------------------------
+            -->
+
+            <div id="PathAndPolygon">
+                <div class="bluebox">
+                    <h2>Path to Polygon</h2>
+                    <p>
+                        Choose your .kml file containing the path you wish to convert into polygon.<br><br>
+                        <input type="file" onchange="FileReact('pathtopolygon')" id="pathtopolygon"><br><br><br>
+                        File preview:<br><br>
+                        <textarea id="pathtopolygon_output"  rows="4" cols="50" style="margin-left: 40px"></textarea><br><br>
+                        
+                        <button onclick="Download(document.getElementById('pathtopolygon_output').value,'pathtopolygon')">Convert</button>
+                    </p>
+                </div>
+                <div class="bluebox">
+                    <h2>Polygon to Path</h2>
+                    <p>
+                        Choose your .kml file containing the polygon you wish to convert into path<br><br>
+                        <input type="file" onchange="FileReact('polygontopath')" id="polygontopath"><br><br><br>
+                        File preview:<br><br>
+                        <textarea id="polygontopath_output" rows="4" cols="50" style="margin-left: 40px"></textarea><br><br>
+
+                        <button onclick="Download(document.getElementById('polygontopath_output').value,'polygontopath')">Convert</button>
+                    </p>
+                </div>
+            </div>
+
+            <!-- 
+                -----------------------------------------------------------------------------
+                    Coordinate Conversion
+                -----------------------------------------------------------------------------
+            -->
+
+            <div id="CoordinateConversion">
+                <div class="bluebox">
+                    <h2>Coordinate Convertor</h2>
+                    <p>
+                        Choose your .kml file containing a path or polygon to get the Coordinates<br><br>
+                        <input type="file" onchange="FileReact('coordinateconversion')" id="coordinateconversion"><br><br><br>
+                        File preview:<br><br>
+                        <textarea id="coordinateconversion_output"  rows="4" cols="50" style="margin-left: 40px"></textarea><br><br>
+                        
+                        Choose Coordinate System to be exported in:
+                        <table style="padding-left: 50px;">
+                            <form>
+                                <tr>
+                                    <td style="padding:5px"><input type="radio" id="Trad" name="SyntaxChoice" value="Trad" onclick="isCheckedSyn(this.id)" checked>&nbsp<label for="Trad">Traditional<br><span style="padding-left: 25px;">e.g. 115.7921416°, -31.9939346°</span></label>&nbsp&nbsp&nbsp</td>
+                                    <td style="padding:5px"><input type="radio" id="Num" name="SyntaxChoice" value="Num" onclick="isCheckedSyn(this.id)">&nbsp<label for="Num">Numbers<br><span style="padding-left: 25px;"></span>e.g. 115.7921416, -31.9939346</span></label>&nbsp&nbsp&nbsp</td>
+                                </tr>
+                            </form>
+                        </table>
+                        <p style="font-size: 14px; padding-left: 80px;">Difference is the (°) sign. Excel considers it as a String with it, but a Number without it</p><br>
+
+                        <p>Choose Coordinate System to be exported in:</p>
+                        <table style="padding-left: 50px;">
+                            <form>
+                                <tr>
+                                    <td style="padding:5px"><input type="radio" id="DD" name="CoordsChoice" value="DD" onclick="isCheckedCoord(this.id)" checked>&nbsp<label for="DD">Latitude and Longitude (Decimal Degrees)</label>&nbsp&nbsp&nbsp</td>
+                                    <td style="padding:5px"><input type="radio" id="DMS" name="CoordsChoice" value="DMS" onclick="isCheckedCoord(this.id)">&nbsp<label for="DMS">Degrees, Minutes, Seconds</label>&nbsp&nbsp&nbsp</td>
+                                    <td style="padding:5px"><input type="radio" id="DDM" name="CoordsChoice" value="DDM" onclick="isCheckedCoord(this.id)">&nbsp<label for="DDM">Degrees, Decimal Minutes</label>&nbsp&nbsp&nbsp</td>
+                                </tr>
+                                <!--
+                                <tr>
+                                    <td style="padding:5px"><input type="radio" id="UTM" name="CoordsChoice" value="UTM" onclick="isCheckedCoord(this.id)"><label for="UTM">Universal Transverse Mercator</label></td>
+                                    <td style="padding:5px"><input type="radio" id="MGS" name="CoordsChoice" value="MGS" onclick="isCheckedCoord(this.id)"><label for="MGS">Military Grid System</label></td>
+                                    <td style="padding:5px"></td>
+                                </tr>
+                                Too hard for now:
+                                https://www.movable-type.co.uk/scripts/latlong-utm-mgrs.html
+                                -->
+                            </form>
+                        </table><br><br>
+                        <button onclick="Download(document.getElementById('coordinateconversion_output').value,'coordinateconversion')">Convert</button>
+                    </p>
+                </div>
+            </div>
+
+            <!-- 
+                -----------------------------------------------------------------------------
+                    Multiple Path files
+                -----------------------------------------------------------------------------
+            -->
+            <!--
+            <div id="CombinePath">
+                <div class="bluebox">
+                    <h2>Combine Multiple Paths (In progress: Doesn't work Lmao sorry)</h2>
+                    <p>
+                        Choose multiple .kml files containing the paths you wish merge.<br><br>
+                        <input type="file" onchange="FileReact('multipath')" id="multipath"><br><br><br>
+                        File preview:<br><br>
+                        <textarea id="multipath_output"  rows="4" cols="50" style="margin-left: 40px"></textarea><br><br>
+                        
+                        <button onclick="Download(document.getElementById('multipath_output').value,'multipath')">Convert</button>
+                    </p>
+                    <!-
+                        Take multiple files and combine to make one path file
+                    ->
+                </div>
+            </div>
+            -->
+
+            <!-- 
+                -----------------------------------------------------------------------------
+                    Single KML to Multiple
+                -----------------------------------------------------------------------------
+            -->
+
+            <div id="SingleToMultiple">
+                <div class="bluebox">
+                    <h2>.kml file to Multiple Shapes & Paths</h2>
+                    <p>
+                        Choose multiple .kml files containing the paths you wish merge.<br><br>
+                        <input type="file" onchange="FileReact('singletomulti')" id="singletomulti"><br><br><br>
+                        File preview:<br><br>
+                        <textarea id="singletomulti_output"  rows="4" cols="50" style="margin-left: 40px"></textarea><br><br>
+                        
+                        <button onclick="SingleToMultiple(document.getElementById('singletomulti_output').value)">Convert</button>
+                    </p>
+                    <!--
+                        Take multiple files and combine to make one path file
+                    -->
+                </div>
+            </div>
+
+            <!-- 
+                -----------------------------------------------------------------------------
+                    Contact Information
+                -----------------------------------------------------------------------------
+            -->
+
+            <div id="Help" class="general">
+                <h1>Help:</h1>
+                <h2 style="padding-left: 80px">What is a .kml and how do I get it from Google Earth?</h2>
+                <p style="padding-left: 140px">A kml file is a Google Earth file that is readable as a text and therefore can be manipulated into new desired document. You can obtain the kml by <b>right clicking on anything (e.g. folder, shape or path) and selecting <i>Save Places As...</i> and picking .kml format</b></p>
+                <br>
+                <h2 style="padding-left: 80px">Can't real .kml in Google Earth?</h2>
+                <p style="padding-left: 140px">If you've tried double clicking on the file and it opens a different app, you will need to manually choose what application that opens. You can do this by <b>Right clicking on the file, selecting <i>Open with...</i> and select Google Earth</b></p>
+                <br>
+                <h2 style="padding-left: 80px">Missing File?</h2>
+                <p style="padding-left: 140px">I am aware that this happens it is caused by the fact you have two files in different places that are exactly the same name therefore will overwrite the other one. <b>Contact me for further assistant in the contact tab.</b></p>
+                <br>
+                <h2 style="padding-left: 80px">Need more help?</h2>
+                <p style="padding-left: 140px">I am always free for consultancy so please feel free to contact me!</p>
+
+            </div>
+
+
+            <!-- 
+                -----------------------------------------------------------------------------
+                    Contact Information
+                -----------------------------------------------------------------------------
+            -->
+
+            <div id="Contact" class="general">
+                <h2>Developers:</h2>
+                <p>This site was made and developed by Andrew Anthony Triglavcanin, inspired by the lack of tools for Google Earth tools and thought it might be useful as a resource to others.<br><br>
+                If you have any queries or questions or in need of Google Earth Consultation, don't hesitate to contact me using the below information</p>
+                <p class="contact">
+                    Andrew Triglavcanin<br>
+                    Business Development Analyst<br>
+                    m: +61 413 127 893 <br>
+                    e: andrewtriglav@gmail.com
+                </p>
+            </div>
+        </div>
+    </body>
+</html>
