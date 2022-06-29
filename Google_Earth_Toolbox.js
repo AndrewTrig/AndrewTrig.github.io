@@ -338,6 +338,6 @@ function SingleToMultiple(AllContent) {
 
     zip.generateAsync({type:"blob"})
     .then(function(content) {
-        saveAs(content, "ToolBox: Google Earth.zip");
+        saveAs(content, "The Google Earth Toolbox.zip");
     });
 }
