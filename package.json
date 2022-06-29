@@ -1,0 +1,23 @@
+{
+  "name": "andrewtrig.github.io",
+  "version": "1.0.0",
+  "description": "",
+  "main": "Google_Earth_Toolbox.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AndrewTrig/AndrewTrig.github.io.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/AndrewTrig/AndrewTrig.github.io/issues"
+  },
+  "homepage": "https://github.com/AndrewTrig/AndrewTrig.github.io#readme",
+  "dependencies": {
+    "file-saver": "^2.0.5",
+    "jszip": "^3.10.0"
+  }
+}
